@@ -1,15 +1,13 @@
 import java.util.jar._
 
+name := "integration-tools"
+
 crossScalaVersions in ThisBuild := Seq("2.8.1", "2.9.0-1")
 
 // doing "in ThisBuild" makes this default setting for all projects in this build
 version in ThisBuild := "1.2"
 
 organization in ThisBuild := "com.gu"
-
-name := "integration-tools"
-
-publishArtifact := false
 
 scalaVersion := "2.9.0-1"
 
@@ -38,6 +36,8 @@ packageOptions in ThisBuild <+= (version, name) map { (v, n) =>
   )
 }
 
+publishArtifact := true
+
 publishTo in ThisBuild <<= (version) { version: String =>
     val publishType = if (version.endsWith("SNAPSHOT")) "snapshots" else "releases"
     Some(
@@ -48,5 +48,7 @@ publishTo in ThisBuild <<= (version) { version: String =>
     )
 }
 
-
 scalacOptions in ThisBuild += "-deprecation"
+
+
+
