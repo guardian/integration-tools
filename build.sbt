@@ -7,6 +7,8 @@ version in ThisBuild := "1.2"
 
 organization in ThisBuild := "com.gu"
 
+name := "integration-tools"
+
 publishArtifact := false
 
 scalaVersion := "2.9.0-1"
