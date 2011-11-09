@@ -41,7 +41,6 @@ Limitations
   * No class loader hacking is performed: the web apps are loaded into the same classloader
 as your tests. This will cause problems if you web apps share libraries that use
 statics for state. (See note below on Google Guice.)
-  * Currently only published for scala 2.8.1
 
 Getting started with simple-build-tool and scalatest
 ====================================================

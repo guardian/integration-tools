@@ -2,33 +2,36 @@ import java.util.jar._
 
 name := "integration-tools"
 
-crossScalaVersions in ThisBuild := Seq("2.8.1", "2.9.0-1")
+organization := "com.gu"
 
-// doing "in ThisBuild" makes this default setting for all projects in this build
-version in ThisBuild := "1.2"
+version:= "1.4-SNAPSHOT"
 
-organization in ThisBuild := "com.gu"
+crossScalaVersions := Seq("2.8.1", "2.9.0-1", "2.9.1")
 
-scalaVersion := "2.9.0-1"
+scalaVersion := "2.9.1"
 
-resolvers in ThisBuild ++= Seq(
+resolvers ++= Seq(
   "jboss" at "http://repository.jboss.org/maven2/"
 )
 
 
 libraryDependencies <<= (scalaVersion, libraryDependencies) { (sv, deps) =>
     val JETTY_VERSION = "7.3.1.v20110307"
-    val ioVersionMap = Map("2.8.1" -> "0.1.1", "2.9.0-1" -> "0.1.2")
-    val IO_VERSION = ioVersionMap.getOrElse(sv, error("Unsupported Scala version " + sv))
+    val scalaIncubatorIO =
+      sv match {
+        case "2.8.1" => "com.github.scala-incubator.io" %% "file" % "0.1.1"
+        case "2.9.0-1" => "com.github.scala-incubator.io" %% "file" % "0.1.2"
+        case "2.9.1" => "com.github.scala-incubator.io" %% "scala-io-file" % "0.2.0"
+      }
     Seq(
         "org.eclipse.jetty" % "jetty-webapp" % JETTY_VERSION,
         "org.eclipse.jetty" % "jetty-jsp-2.1" % JETTY_VERSION,
         "org.mortbay.jetty" % "jsp-2.1-glassfish" % "2.1.v20100127",
-        "com.github.scala-incubator.io" %% "file" % IO_VERSION
+        scalaIncubatorIO
     )
 }
 
-packageOptions in ThisBuild <+= (version, name) map { (v, n) =>
+packageOptions <+= (version, name) map { (v, n) =>
   Package.ManifestAttributes(
     Attributes.Name.IMPLEMENTATION_VERSION -> v,
     Attributes.Name.IMPLEMENTATION_TITLE -> n,
@@ -38,7 +41,7 @@ packageOptions in ThisBuild <+= (version, name) map { (v, n) =>
 
 publishArtifact := true
 
-publishTo in ThisBuild <<= (version) { version: String =>
+publishTo <<= (version) { version: String =>
     val publishType = if (version.endsWith("SNAPSHOT")) "snapshots" else "releases"
     Some(
         Resolver.file(
@@ -48,7 +51,7 @@ publishTo in ThisBuild <<= (version) { version: String =>
     )
 }
 
-scalacOptions in ThisBuild += "-deprecation"
+scalacOptions += "-deprecation"
 
 
 
