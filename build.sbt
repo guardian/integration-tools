@@ -27,6 +27,7 @@ libraryDependencies <<= (scalaVersion, libraryDependencies) { (sv, deps) =>
         "org.eclipse.jetty" % "jetty-webapp" % JETTY_VERSION,
         "org.eclipse.jetty" % "jetty-jsp-2.1" % JETTY_VERSION,
         "org.mortbay.jetty" % "jsp-2.1-glassfish" % "2.1.v20100127",
+  		"net.databinder" %% "dispatch-http" % "0.8.8",
         scalaIncubatorIO
     )
 }
