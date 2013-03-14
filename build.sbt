@@ -6,7 +6,7 @@ organization := "com.gu"
 
 version:= "1.5-SNAPSHOT"
 
-crossScalaVersions := Seq("2.8.1", "2.9.0-1", "2.9.1", "2.10.0")
+crossScalaVersions := Seq("2.9.1", "2.10.0")
 
 scalaVersion := "2.10.0"
 
@@ -19,8 +19,6 @@ libraryDependencies <<= (scalaVersion, libraryDependencies) { (sv, deps) =>
     val JETTY_VERSION = "7.3.1.v20110307"
     val scalaIncubatorIO =
       sv match {
-        case "2.8.1" => "com.github.scala-incubator.io" %% "file" % "0.1.1"
-        case "2.9.0-1" => "com.github.scala-incubator.io" %% "file" % "0.1.2"
         case "2.9.1" => "com.github.scala-incubator.io" %% "scala-io-file" % "0.2.0"
         case "2.10.0" => "com.github.scala-incubator.io" % "scala-io-file_2.10" % "0.4.2"
       }
