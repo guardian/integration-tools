@@ -15,10 +15,10 @@ import scalax.file.Path
 object SiblingProjectFile {
   def apply(desiredPath: Path): Path = {
     val currentDirectory = (Path fromString ".").toAbsolute.normalize
-    val directoriesToCheck = currentDirectory :: currentDirectory.parents
+    val directoriesToCheck = currentDirectory :: currentDirectory.parents.toList
     val possiblePaths = directoriesToCheck map { _ / desiredPath }
     possiblePaths.find(_ exists) getOrElse
-      error("Could not find absolute path for " + desiredPath.path + "\n searched in: " + possiblePaths.map(_.path) )
+      sys.error("Could not find absolute path for " + desiredPath.path + "\n searched in: " + possiblePaths.map(_.path) )
   }
 }
 
