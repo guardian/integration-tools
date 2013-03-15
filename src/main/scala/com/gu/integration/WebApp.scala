@@ -1,6 +1,6 @@
 package com.gu.integration
 
-import scalax.file.Path._
+import scalax.file.Path
 import org.eclipse.jetty.webapp.WebAppContext
 import org.eclipse.jetty.server.Handler
 
@@ -20,7 +20,7 @@ abstract class WarWebApp extends WebApp {
   def contextPath: String
 
   lazy val displayName = contextPath
-  private lazy val war = SiblingProjectFile(warPath)
+  private lazy val war = SiblingProjectFile(Path.fromString(warPath))
 
   lazy val handler = {
     val context = new WebAppContext
@@ -54,7 +54,7 @@ abstract class ClasspathWebApp extends WebApp {
   lazy val displayName = contextPath
 
   private val webXmlPath = "WEB-INF/web.xml"
-  private lazy val webXmlLocation = SiblingProjectFile(srcPath / "src/main/webapp" / webXmlPath)
+  private lazy val webXmlLocation = SiblingProjectFile(Path.fromString(srcPath + "/src/main/webapp/" + webXmlPath))
   private lazy val projectRoot = webXmlLocation.path.stripSuffix(webXmlPath)
 
   lazy val handler = {
