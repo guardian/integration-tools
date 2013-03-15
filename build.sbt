@@ -4,11 +4,11 @@ name := "integration-tools"
 
 organization := "com.gu"
 
-version:= "1.5-SNAPSHOT"
+version:= "1.5"
 
-crossScalaVersions := Seq("2.8.1", "2.9.0-1", "2.9.1")
+crossScalaVersions := Seq("2.9.2", "2.10.1")
 
-scalaVersion := "2.9.1"
+scalaVersion := "2.10.1"
 
 resolvers ++= Seq(
   "jboss" at "http://repository.jboss.org/maven2/"
@@ -17,18 +17,12 @@ resolvers ++= Seq(
 
 libraryDependencies <<= (scalaVersion, libraryDependencies) { (sv, deps) =>
     val JETTY_VERSION = "7.3.1.v20110307"
-    val scalaIncubatorIO =
-      sv match {
-        case "2.8.1" => "com.github.scala-incubator.io" %% "file" % "0.1.1"
-        case "2.9.0-1" => "com.github.scala-incubator.io" %% "file" % "0.1.2"
-        case "2.9.1" => "com.github.scala-incubator.io" %% "scala-io-file" % "0.2.0"
-      }
     Seq(
         "org.eclipse.jetty" % "jetty-webapp" % JETTY_VERSION,
         "org.eclipse.jetty" % "jetty-jsp-2.1" % JETTY_VERSION,
         "org.mortbay.jetty" % "jsp-2.1-glassfish" % "2.1.v20100127",
-  		"net.databinder" %% "dispatch-http" % "0.8.8",
-        scalaIncubatorIO
+  	"net.databinder" %% "dispatch-http" % "0.8.9",
+        "com.github.scala-incubator.io" %% "scala-io-file" % (if (sv.startsWith("2.9.")) "0.4.1" else "0.4.2")
     )
 }
 
