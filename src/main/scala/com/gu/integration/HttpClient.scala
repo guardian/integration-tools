@@ -1,7 +1,7 @@
 package com.gu.integration
 
-import dispatch._
-import dispatch.thread.ThreadSafeHttpClient
+import dispatch.classic._
+import dispatch.classic.thread.ThreadSafeHttpClient
 import org.apache.http.params.HttpParams
 import org.apache.http.conn.params.ConnRouteParams
 
