@@ -4,7 +4,7 @@ name := "integration-tools"
 
 organization := "com.gu"
 
-version:= "1.5"
+version:= "1.5-SNAPSHOT"
 
 crossScalaVersions := Seq("2.9.2", "2.10.1")
 
@@ -16,12 +16,11 @@ resolvers ++= Seq(
 
 
 libraryDependencies <<= (scalaVersion, libraryDependencies) { (sv, deps) =>
-    val JETTY_VERSION = "7.3.1.v20110307"
+    val JETTY_VERSION = "8.1.11.v20130520"
     Seq(
         "org.eclipse.jetty" % "jetty-webapp" % JETTY_VERSION,
-        "org.eclipse.jetty" % "jetty-jsp-2.1" % JETTY_VERSION,
-        "org.mortbay.jetty" % "jsp-2.1-glassfish" % "2.1.v20100127",
-  	"net.databinder" %% "dispatch-http" % "0.8.9",
+        "org.eclipse.jetty" % "jetty-jsp" % JETTY_VERSION,
+        "net.databinder" %% "dispatch-http" % "0.8.9",
         "com.github.scala-incubator.io" %% "scala-io-file" % (if (sv.startsWith("2.9.")) "0.4.1" else "0.4.2")
     )
 }
