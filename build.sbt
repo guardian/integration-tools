@@ -4,7 +4,7 @@ name := "integration-tools"
 
 organization := "com.gu"
 
-version:= "1.5-SNAPSHOT"
+version:= "1.6"
 
 crossScalaVersions := Seq("2.9.2", "2.10.1")
 
