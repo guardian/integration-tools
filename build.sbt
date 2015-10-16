@@ -25,6 +25,24 @@ libraryDependencies <<= (scalaVersion, libraryDependencies) { (sv, deps) =>
 
 publishArtifact := true
 
+scmInfo := Some(ScmInfo(url("https://github.com/guardian/integration-tools"),
+  "scm:git:git@github.com:guardian/integration-tools.git"))
+
+description := "Simple scala wrappers to make it easy to kick up web apps under jetty, ideal for integration tests"
+
+licenses := Seq("Apache V2" -> url("http://www.apache.org/licenses/LICENSE-2.0.html"))
+
+pomExtra := {
+  <url>https://github.com/guardian/feature-switching</url>
+    <developers>
+      <developer>
+        <id>theguardian</id>
+        <name>The Guardian</name>
+        <url>https://github.com/guardian</url>
+      </developer>
+    </developers>
+}
+
 releaseProcess := Seq[ReleaseStep](
   checkSnapshotDependencies,
   inquireVersions,
