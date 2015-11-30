@@ -13,10 +13,10 @@ resolvers ++= Seq(
 )
 
 libraryDependencies <<= (scalaVersion, libraryDependencies) { (sv, deps) =>
-    val JETTY_VERSION = "8.1.11.v20130520"
+    val JETTY_VERSION = "9.3.6.v20151106"
     Seq(
         "org.eclipse.jetty" % "jetty-webapp" % JETTY_VERSION,
-        "org.eclipse.jetty" % "jetty-jsp" % JETTY_VERSION,
+        "org.eclipse.jetty" % "apache-jsp" % JETTY_VERSION,
         "net.databinder" %% "dispatch-http" % "0.8.10",
         "com.github.scala-incubator.io" %% "scala-io-file" % "0.4.3",
         "org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.4"
